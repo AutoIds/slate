@@ -1,158 +1,164 @@
 # Groups
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = AutoID::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+## Create group
+> Example Request
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl http://localhost:3000/api/v1/accounts/:account_id/groups \
+  -X POST \
+  -H "Authorization: Token token=your_api_key" \
+  -H "Content-type: application/json" \
+  -d '{"name":"group name"}'
+```
+
+> Example Response:
+
+```json
+{
+  "id": "d0032abf630641eb973d52e3d7e1674c",
+  "name": "group name",
+  "created_at": "2017-10-01T16:44:31.642-07:00",
+  "updated_at": "2017-10-01T16:44:31.642-07:00"
+}
+```
+
+### ARGUMENTS
+
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+account_id | String | Required | The id of the account the group will be created under.
+name | String | Required | The name of the group to be created.
+
+
+<aside class="success">
+Dev Note - Show errors.
+</aside>
+
+
+
+
+
+## Get group
+> Example Request
+
+```shell
+curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/groups/:group_id
 ```
 
 
-> The above command returns JSON structured like this:
+> Example Response:
+
+```json
+{
+  "id": "group_id",
+  "name": "group name",
+  "created_at": "2017-10-01T16:44:31.642-07:00",
+  "updated_at": "2017-10-01T16:44:31.642-07:00"
+}
+```
+
+This returns group information if the authenticated user has access to the specified group.
+
+### ARGUMENTS
+
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+group_id | String | Required | The id of the group to retrieve.
+
+
+<aside class="warning">
+Dev Note - Show errors.
+</aside>
+
+
+
+
+
+
+## Get groups
+> Example Request
+
+```shell
+curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/groups
+```
+
+
+> Example Response:
 
 ```json
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "name": "group name 1",
+    "created_at": "2017-10-01T16:44:31.642-07:00",
+    "updated_at": "2017-10-01T16:44:31.642-07:00"
   },
   {
     "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "group name 2",
+    "created_at": "2017-10-01T16:44:31.642-07:00",
+    "updated_at": "2017-10-01T16:44:31.642-07:00"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This returns an array of all groups the authenticated user has access to. If the user has access to no groups, an empty array is returned.
 
-### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="warning">
+Dev Note - Add a new user column api_key that is then used to authenticate users.
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
 
-api = AutoID::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+
+
+## Update group
+> Example Request
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl http://localhost:3000/api/v1/groups/:group_id \
+  -X PUT \
+  -H "Authorization: Token token=your_api_key" \
+  -H "Content-type: application/json" \
+  -d '{"name":"new group name"}'
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Example Response:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": ":group_id",
+  "name": "new group name",
+  "created_at": "2017-10-01T16:44:31.642-07:00",
+  "updated_at": "2017-10-01T17:03:14.049-07:00"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This returns group information if the authenticated user has access to the specified group.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### ARGUMENTS
 
-### HTTP Request
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+group_id | String | Required | The id of the group to upate.
+name | String | Required | The new name for the group.
 
-`GET http://example.com/kittens/<ID>`
 
-### URL Parameters
+<aside class="warning">
+Dev Note - Show errors.
+</aside>
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
-## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
 
-api = AutoID::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## Delete group
+<aside class="warning">
+This is currently not supported.
+</aside>

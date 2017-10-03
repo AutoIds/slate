@@ -5,8 +5,10 @@
 
 ```shell
 curl http://localhost:3000/api/v1/accounts \
+  -X POST \
   -H "Authorization: Token token=your_api_key" \
-  -d name="account name"
+  -H "Content-type: application/json" \
+  -d '{"name":"account name"}'
 ```
 
 > Example Response:
@@ -121,9 +123,10 @@ Dev Note - Add a new user column api_key that is then used to authenticate users
 
 ```shell
 curl http://localhost:3000/api/v1/accounts/:account_id \
+  -X PUT \
   -H "Authorization: Token token=your_api_key" \
-  -d name="new account name" \
-  -X PUT
+  -H "Content-type: application/json" \
+  -d '{"name":"new account name"}'
 ```
 
 

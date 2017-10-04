@@ -75,40 +75,7 @@ Dev Note - Show errors.
 
 
 
-## Get groups
-> Example Request
-
-```shell
-curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/groups
-```
-
-
-> Example Response:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "group name 1",
-    "created_at": "2017-10-01T16:44:31.642-07:00",
-    "updated_at": "2017-10-01T16:44:31.642-07:00"
-  },
-  {
-    "id": 2,
-    "name": "group name 2",
-    "created_at": "2017-10-01T16:44:31.642-07:00",
-    "updated_at": "2017-10-01T16:44:31.642-07:00"
-  }
-]
-```
-
-This returns an array of all groups the authenticated user has access to. If the user has access to no groups, an empty array is returned.
-
-
-<aside class="warning">
-Dev Note - Add a new user column api_key that is then used to authenticate users.
-</aside>
-
+## Get groups in account
 
 
 
@@ -153,6 +120,20 @@ Dev Note - Show errors.
 </aside>
 
 
+
+
+
+## Add user to group
+
+
+## Remove user from group
+
+
+
+## Add domain to group
+
+
+## Remove domain from group
 
 
 

@@ -39,3 +39,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
 
+<aside class="warning">
+Need to add api token column and use that to authenticate. This is different from the token_id column.
+</aside>
+

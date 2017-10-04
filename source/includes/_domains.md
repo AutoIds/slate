@@ -1,158 +1,214 @@
 # Domains
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = AutoID::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+## Create domain
+> Example Request
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl http://localhost:3000/api/v1/accounts/:account_id/domains \
+  -X POST \
+  -H "Authorization: Token token=your_api_key" \
+  -H "Content-type: application/json" \
+  -d \
+  '{"url":"http://account1domain6668.com", 
+    "google_ua_code":"UA-12352365-66", 
+    "industry":"home services"
+  }'
 ```
 
-
-> The above command returns JSON structured like this:
+> Example Response:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "id":"ad17872c1fe446239823bc0c072e11da",
+  "web_analytics":true,
+  "display_numbers":false,"
+  call_shield":false,
+  "track_chats":true,
+  "track_leads":true,
+  "digital_ai":false,
+  "url":"http://account1domain6679.com",
+  "created_at":"2017-10-03T16:51:26.000-07:00",
+  "updated_at":"2017-10-03T16:51:26.000-07:00"
+}
 ```
 
-This endpoint retrieves all kittens.
+### ARGUMENTS
 
-### HTTP Request
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+account_id | String | Required | The id of the account the domain will be created under.
+url | String | Required | The url of the domain to be created.
+google_ua_code | String | Optional | Google UA code for domain.
+industry | String | Required | Which industry the domain is associated with.
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Dev Note - Show errors.
 </aside>
 
-## Get a Specific Kitten
+<aside class="warning">
+Dev Note - Show list of allowed industries.
+</aside>
 
-```ruby
-require 'kittn'
 
-api = AutoID::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+<aside class="warning">
+Dev Note - Describe features.
+</aside>
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+<aside class="warning">
+Dev Note - Domains can belong to multiple accounts. Changes to one domain effects all instances as we do not copy domains at this point.
+</aside>
+
+
+
+
+
+
+
+
+## Get domain
+> Example Request
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/domains/:domain_id
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Example Response:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id":"ad17872c1fe446239823bc0c072e11da",
+  "web_analytics":true,
+  "display_numbers":false,"
+  call_shield":false,
+  "track_chats":true,
+  "track_leads":true,
+  "digital_ai":false,
+  "url":"http://account1domain6679.com",
+  "created_at":"2017-10-03T16:51:26.000-07:00",
+  "updated_at":"2017-10-03T16:51:26.000-07:00"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This returns domain information if the authenticated user has access to the specified domain.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### ARGUMENTS
 
-### HTTP Request
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+domain_id | String | Required | The id of the domain to retrieve.
 
-`GET http://example.com/kittens/<ID>`
 
-### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
-## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
+## Get domains in account
 
-api = AutoID::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+
+
+## Get domains in group
+> Example Request
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/groups/:group_id/
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Example Response:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "id":"ad17872c1fe446239823bc0c072e11da",
+  "web_analytics":true,
+  "display_numbers":false,"
+  call_shield":false,
+  "track_chats":true,
+  "track_leads":true,
+  "digital_ai":false,
+  "url":"http://account1domain6679.com",
+  "created_at":"2017-10-03T16:51:26.000-07:00",
+  "updated_at":"2017-10-03T16:51:26.000-07:00"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This returns domain information if the authenticated user has access to the specified domain.
 
-### HTTP Request
+### ARGUMENTS
 
-`DELETE http://example.com/kittens/<ID>`
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+group_id | String | Required | The id of the group to retrieve.
 
-### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+
+
+
+
+## Update domain
+> Example Request
+
+```shell
+curl http://localhost:3000/api/v1/domains/:domain_id \
+  -X PUT \
+  -H "Authorization: Token token=your_api_key" \
+  -H "Content-type: application/json" \
+  -d '{"track_leads":false}'
+```
+
+
+> Example Response:
+
+```json
+{
+  "id":"ad17872c1fe446239823bc0c072e11da",
+  "web_analytics":true,
+  "display_numbers":false,"
+  call_shield":false,
+  "track_chats":true,
+  "track_leads":false,
+  "digital_ai":false,
+  "url":"http://account1domain6679.com",
+  "created_at":"2017-10-03T16:51:26.000-07:00",
+  "updated_at":"2017-10-03T16:51:26.000-07:00"
+}
+```
+
+This returns domain information if the authenticated user has access to the specified domain.
+
+### ARGUMENTS
+
+Argument | Type | Required | Description
+---------  | ----------- | ----------- | -----------
+domain_id | String | Required | The id of the domain to upate.
+name | String | Required | The new name for the domain.
+
+
+<aside class="warning">
+Dev Note - implement this.
+</aside>
+
+
+
+## Add domain to account
+
+
+## Remove domain from account
+
+
+## Add domain to group
+
+
+## Remove domain from group
+
+
+
+
+
+## Delete domain
+<aside class="warning">
+This is currently not supported.
+</aside>

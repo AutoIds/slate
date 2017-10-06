@@ -9,7 +9,7 @@ curl http://localhost:3000/api/v1/accounts/:account_id/domains \
   -H "Authorization: Token token=your_api_key" \
   -H "Content-type: application/json" \
   -d \
-  '{"url":"http://account1domain6668.com", 
+  '{"domain_name":"http://example.com", 
     "google_ua_code":"UA-12352365-66", 
     "industry":"home services"
   }'
@@ -19,14 +19,14 @@ curl http://localhost:3000/api/v1/accounts/:account_id/domains \
 
 ```json
 {
-  "id":"ad17872c1fe446239823bc0c072e11da",
+  "id":"domain id",
   "web_analytics":true,
   "display_numbers":false,"
   call_shield":false,
   "track_chats":true,
   "track_leads":true,
   "digital_ai":false,
-  "url":"http://account1domain6679.com",
+  "domain_name":"http://example.com",
   "created_at":"2017-10-03T16:51:26.000-07:00",
   "updated_at":"2017-10-03T16:51:26.000-07:00"
 }
@@ -71,7 +71,8 @@ Dev Note - Domains can belong to multiple accounts. Changes to one domain effect
 > Example Request
 
 ```shell
-curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/domains/:domain_id
+curl -H "Authorization: Token token=your_api_key" \
+http://localhost:3000/api/v1/domains/:domain_id
 ```
 
 
@@ -79,14 +80,14 @@ curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/d
 
 ```json
 {
-  "id":"ad17872c1fe446239823bc0c072e11da",
+  "id":"domain id",
   "web_analytics":true,
   "display_numbers":false,"
   call_shield":false,
   "track_chats":true,
   "track_leads":true,
   "digital_ai":false,
-  "url":"http://account1domain6679.com",
+  "domain_name":"http://example.com",
   "created_at":"2017-10-03T16:51:26.000-07:00",
   "updated_at":"2017-10-03T16:51:26.000-07:00"
 }
@@ -106,44 +107,13 @@ domain_id | String | Required | The id of the domain to retrieve.
 
 ## Get domains in account
 
+See <a href="#get-account">Get account</a>
 
 
 
 
 ## Get domains in group
-> Example Request
-
-```shell
-curl -H "Authorization: Token token=your_api_key" http://localhost:3000/api/v1/groups/:group_id/
-```
-
-
-> Example Response:
-
-```json
-{
-  "id":"ad17872c1fe446239823bc0c072e11da",
-  "web_analytics":true,
-  "display_numbers":false,"
-  call_shield":false,
-  "track_chats":true,
-  "track_leads":true,
-  "digital_ai":false,
-  "url":"http://account1domain6679.com",
-  "created_at":"2017-10-03T16:51:26.000-07:00",
-  "updated_at":"2017-10-03T16:51:26.000-07:00"
-}
-```
-
-This returns domain information if the authenticated user has access to the specified domain.
-
-### ARGUMENTS
-
-Argument | Type | Required | Description
----------  | ----------- | ----------- | -----------
-group_id | String | Required | The id of the group to retrieve.
-
-
+See <a href="#get-group">Get group</a>
 
 
 
@@ -164,14 +134,14 @@ curl http://localhost:3000/api/v1/domains/:domain_id \
 
 ```json
 {
-  "id":"ad17872c1fe446239823bc0c072e11da",
+  "id":"domain id",
   "web_analytics":true,
   "display_numbers":false,"
   call_shield":false,
   "track_chats":true,
   "track_leads":false,
   "digital_ai":false,
-  "url":"http://account1domain6679.com",
+  "domain_name":"http://example.com",
   "created_at":"2017-10-03T16:51:26.000-07:00",
   "updated_at":"2017-10-03T16:51:26.000-07:00"
 }
@@ -188,21 +158,30 @@ name | String | Required | The new name for the domain.
 
 
 <aside class="warning">
-Dev Note - implement this.
+Dev Note - Do we want to allow users to change anything about domains?
 </aside>
 
 
 
 ## Add domain to account
 
+See <a href="#add-domain-to-account">Add domain to account</a>
+
+
 
 ## Remove domain from account
+
+See <a href="#remove-domain-from-account">Add domain to account</a>
 
 
 ## Add domain to group
 
+See <a href="#add-domain-to-group">Add domain to group</a>
+
 
 ## Remove domain from group
+
+See <a href="#remove-domain-from-group">Add domain to group</a>
 
 
 

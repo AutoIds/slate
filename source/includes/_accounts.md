@@ -159,7 +159,12 @@ curl http://localhost:3000/api/v1/accounts/:account_id \
 }
 ```
 
-Returns updated account information. If the user does not have access to the specified account, this call will fail.
+Returns updated account information. If the user does not have access to the specified account, this request will fail.
+
+<aside class="success">
+Currently you can only change the account name.
+</aside>
+
 
 ### ARGUMENTS
 
@@ -217,7 +222,7 @@ curl http://localhost:3000/api/v1/accounts/:account_id/admins \
 }
 ```
 
-User will be invited be added to the specified account by email invitation. User's currently invited to an account have account admin permissions. 
+User will be sent an email invitation be added to the specified account. User's currently invited to an account have account admin permissions. This allows these users to perform admin function on the account.
 
 ### ARGUMENTS
 
@@ -237,11 +242,10 @@ email | String | Required | The email of user to invite to account.
 > Example Request
 
 ```shell
-curl http://localhost:3000/api/v1/accounts/:account_id/admins \
+curl http://localhost:3000/api/v1/accounts/:account_id/admins\:user_id \
   -X DELETE \
   -H "Authorization: Token token=your_api_key" \
   -H "Content-type: application/json" \
-  -d '{"email":"bob@example.com"}'
 ```
 
 
@@ -275,7 +279,12 @@ User will be removed from the specified account. User's email will not be includ
 Argument | Type | Required | Description
 ---------  | ----------- | ----------- | -----------
 account_id | String | Required | The id of the account to remove the user from.
-email | String | Required | The email of user to remove from the account.
+user_id | String | Required | The id of user to remove from the account.
+
+
+
+
+
 
 
 
@@ -313,6 +322,11 @@ Argument | Type | Required | Description
 account_id | String | Required | The id of the account to add user to.
 name | String | Required | The name of the group to add to account.
 
+
+
+<aside class="success">
+An account can have multiple groups.
+</aside>
 
 
 <aside class="warning">
@@ -388,7 +402,7 @@ curl http://localhost:3000/api/v1/accounts/:account_id/domains \
   -H "Authorization: Token token=your_api_key" \
   -H "Content-type: application/json" \
   -d \
-  '{"url":"http://example.com", 
+  '{"domain":"example.com", 
     "google_ua_code":"UA-12352365-66", 
     "industry":"home services"
   }'
@@ -400,14 +414,14 @@ curl http://localhost:3000/api/v1/accounts/:account_id/domains \
 ```json
 {
   "id":"domain id",
-  "domain":"example222.com",
+  "domain":"example.com",
   "web_analytics":true,
   "display_numbers":false,
   "call_shield":false,
   "track_chats":true,
   "track_leads":true,
   "digital_ai":false,
-  "url":"http://example222.com",
+  "url":"http://example.com",
   "created_at":"2017-10-04T14:17:33.000-07:00",
   "updated_at":"2017-10-04T14:17:33.000-07:00"
 }
@@ -419,11 +433,15 @@ curl http://localhost:3000/api/v1/accounts/:account_id/domains \
 Argument | Type | Required | Description
 ---------  | ----------- | ----------- | -----------
 account_id | String | Required | The id of the account the domain will be created under.
-url | String | Required | The url of the domain to be created.
+domain | String | Required | The domain name of the domain to be created.
 google_ua_code | String | Optional | Google UA code for domain.
 industry | String | Required | Which industry the domain is associated with.
 
 
+
+<aside class="success">
+Adding a domain to the account will list the domain in a groups available domains list.
+</aside>
 
 
 
@@ -473,7 +491,7 @@ The specified domain will not be included in the returned JSON.
 Argument | Type | Required | Description
 ---------  | ----------- | ----------- | -----------
 account_id | String | Required | The id of the account to act upon.
-domain_id | String | Required | The id of the domain to be removed.
+domain_id | String | Required | The id of the domainå to be removed.
 
 
 

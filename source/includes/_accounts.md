@@ -126,9 +126,6 @@ This returns an array of all accounts the authenticated user has access to. If t
 Dev Note - We may need to only authenticate account admins and pass a specific user id as it may make sense for an account admin to query specific users and not send transactions as that user.
 </aside>
 
-<aside class="warning">
-Dev Note - Add a new user column api_key that is then used to authenticate users.
-</aside>
 
 
 

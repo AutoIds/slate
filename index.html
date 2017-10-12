@@ -381,10 +381,6 @@
 <aside class="notice">
 You must replace <code>your_api_key</code> with your personal API key.
 </aside>
-
-<aside class="warning">
-Need to add api token column and use that to authenticate. This is different from the token_id column.
-</aside>
 <h1 id='status-codes'>Status Codes</h1>
 <p>The AutoID API returns the following status codes:</p>
 
@@ -766,7 +762,7 @@ Currently you can only change the account name.
 </tbody></table>
 
 <aside class="success">
-An account can have multiple groups.
+An account can only have a single group.
 </aside>
 
 <aside class="warning">
@@ -1045,6 +1041,10 @@ This returns group information if the authenticated user has access to the speci
 </tbody></table>
 <h2 id='get-groups-in-account'>Get groups in account</h2>
 <p>See <a href="#get-account">Get account</a></p>
+
+<aside class="success">
+An account can only have a single group.
+</aside>
 <h2 id='update-group'>Update group</h2>
 <blockquote>
 <p>Example Request</p>

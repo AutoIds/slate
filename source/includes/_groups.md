@@ -93,6 +93,9 @@ group_id | String | Required | The id of the group to retrieve.
 See <a href="#get-account">Get account</a>
 
 
+<aside class="success">
+An account can only have a single group.
+</aside>
 
 
 

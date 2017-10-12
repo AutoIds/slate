@@ -325,7 +325,7 @@ name | String | Required | The name of the group to add to account.
 
 
 <aside class="success">
-An account can have multiple groups.
+An account can only have a single group.
 </aside>
 
 

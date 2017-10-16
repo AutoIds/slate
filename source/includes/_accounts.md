@@ -105,26 +105,22 @@ http://localhost:3000/api/v1/accounts
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
+    "id": account id,
+    "name": "account name",
     "created_at": "2017-10-01T16:44:31.642-07:00",
-    "updated_at": "2017-10-01T16:44:31.642-07:00"
+    "updated_at": "2017-10-01T16:44:31.642-07:00",
+    "groups": 2,
+    "domains": 10,
+    "admins": 1,
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "created_at": "2017-10-01T16:44:31.642-07:00",
-    "updated_at": "2017-10-01T16:44:31.642-07:00"
-  }
 ]
 ```
 
 This returns an array of all accounts the authenticated user has access to. If the user has access to no accounts, an empty array is returned.
+The numbers returned for groups, admins and domains represents the total number of data associated with the account. For example, this account contains 2 groups, 1 admin user and 10 domains.
 
+You can GET a specific account to see the actual data.
 
-<aside class="warning">
-Dev Note - We may need to only authenticate account admins and pass a specific user id as it may make sense for an account admin to query specific users and not send transactions as that user.
-</aside>
 
 
 
